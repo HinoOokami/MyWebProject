@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Cool Stories!</title>
+    <link rel="icon" type="image/x-icon" href="~/Images/Q.ico" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+@helper CurrentItem(string item)
+{
+    if (item == ViewContext.RouteData.Values["controller"].ToString() + "/" +
+                ViewContext.RouteData.Values["action"].ToString())
+    {
+        @:class="active"
+    }
+}
+<body>
+    <div id="header" class="col-lg-12">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <ul class="nav nav-pills">
+                <li @CurrentItem("Page/Index")> @Html.ActionLink("Last stories", "Index", "Page", new { area = "" }, new { @class = "navbar-brand" })</li>
+                <li @CurrentItem("Story/Random")>@Html.ActionLink("Random story", "Random", "Story", new { area = "" }, new { @class = "navbar-brand" })</li>
+                <li @CurrentItem("Story/Add")>   @Html.ActionLink("Add story", "Add", "Story", new { area = "" }, new { @class = "navbar-brand" })</li>
+                <li @CurrentItem("Admin/Index")> @Html.ActionLink("Login", "Index", "Admin", new { area = "" }, new { @class = "navbar-brand" })</li>
+            @if (Session["admin"] == "1"){
+                <li @CurrentItem("Admin/Checker")> @Html.ActionLink("Check", "Checker", "Admin", new { area = "" }, new { @class = "navbar-brand" })</li>}
+                <li @CurrentItem("Page/About")> @Html.ActionLink("About", "About", "Page", new { area = "" }, new { @class = "navbar-brand" })</li>
+            </ul>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+    <div id="container" class="col-lg-12">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            @RenderBody()
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+    <div id="footer" class="col-lg-12">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8">
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Cool Stories!</p>
+            </footer>
+        </div>
+        <div class="col-lg-2"></div>
+    </div>
+</body>
+</html>

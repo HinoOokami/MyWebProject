@@ -1,0 +1,28 @@
+﻿@model MyWebProject.Models.Stories
+
+@{
+    ViewBag.Title = "Checker";
+}
+
+<h2>Stories checking</h2>
+
+@if (ViewBag.IsChecker)
+{
+    <h2><span class = "label label-info">@Model.Id</span> @Model.Title</h2>
+    <tt class = "alert-warning">@Model.Post_date</tt>
+    <p>@Model.Story</p>
+    <small class = "alert-success">Posted by <i>@Model.Email</i></small>
+    <br/>
+    <div class = "col-lg-3 block"></div>
+    <div class = "col-lg-3">
+        @Html.ActionLink("Show", "Approve", "Admin", new {id = Model.Id}, new {@class = "btn btn-success"})
+    </div>
+    <div class = "col-lg-3">
+        @Html.ActionLink("Delete", "Decline", "Admin", new {id = Model.Id}, new {@class = "btn btn-danger"})
+    </div>
+    <div class = "col-lg-3 block"></div>
+}
+else
+{
+    <big><mark>Новых историй нет</mark></big>
+}

@@ -1,0 +1,10 @@
+﻿@model MyWebProject.Models.Stories
+
+@{
+    ViewBag.Title = "Random";
+}
+
+<h2><span class="label label-info">@Model.Id</span> @Model.Title</h2>
+<tt class="alert-warning">@Model.Post_date</tt>
+<p>@Model.Story</p>
+<small class="alert-success">Posted by <i>@Model.Ename</i></small>

@@ -1,0 +1,18 @@
+﻿@model MyWebProject.Models.Stories
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@if (Model.storiesList != null)
+{
+    foreach (var s in Model.storiesList)
+    {
+        <h2>@Html.ActionLink(s.Id, "Number", "Story", new {id = s.Id}, new {@class = "label label-info"}); @s.Title</h2>
+        <tt class = "alert-warning">@s.Post_date</tt>
+        <p>@s.Story</p>
+        <small class = "alert-success">Posted by
+            <i>@s.Ename</i></small>
+        <hr/>
+    }
+}

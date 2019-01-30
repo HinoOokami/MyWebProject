@@ -1,0 +1,52 @@
+﻿@model MyWebProject.Models.User
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Authorization</h2>
+<p>Status: @Model.Status</p>
+<p>Session: @Session["admin"]</p>
+
+@if (Session["admin"] == "1")
+{
+    <div class="col-lg-2 block"></div>
+    <div class = "col-lg-6">
+        @Html.ActionLink("Sign out", "logout", "Admin", new {}, new {@class = "btn btn-danger"})
+    </div>
+    <div class="col-lg-4"></div>
+}
+
+else
+{
+    using (Html.BeginForm("Index", "Admin"))
+    {
+        <div class = "col-lg-2 block">
+            Login:
+        </div>
+        <div class = "col-lg-6">
+            @Html.TextBox("login", Model.Login, new {@class = "form-control"})
+        </div>
+        <div class = "col-lg-4">
+            <mark>@Html.ValidationMessage("login")</mark>
+        </div>
+
+        <div class = "col-lg-2 block">
+            Password:
+        </div>
+        <div class = "col-lg-6">
+            @Html.Password("passw", Model.Passw, new {@class = "form-control"})
+        </div>
+        <div class = "col-lg-4">
+            <mark>@Html.ValidationMessage("passw")</mark>
+        </div>
+
+        <div class = "col-lg-2 block"></div>
+        <div class = "col-lg-6">
+            <input type = "submit"
+                   value = "Sign in"
+                   class = "btn-lg btn-primary"/>
+        </div>
+        <div class = "col-lg-4"></div>
+    }
+}

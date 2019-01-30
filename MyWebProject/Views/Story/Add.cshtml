@@ -1,0 +1,45 @@
+﻿@model MyWebProject.Models.Stories
+
+<h2>Add new story</h2>
+
+@using (Html.BeginForm())
+{
+    <div class="col-lg-2 block">
+        Story title:
+    </div>
+    <div class="col-lg-6">
+        @Html.TextBox("title", Model.Title, new { @class = "form-control" })
+    </div>
+    <div class="col-lg-4">
+        <mark>@Html.ValidationMessage("title")</mark>
+    </div>
+
+
+    <div class="col-lg-2 block">
+        Story text:
+    </div>
+    <div class="col-lg-6">
+        @Html.TextArea("story", Model.Story, new { @class = "form-control", rows = "10" })
+    </div>
+    <div class="col-lg-4">
+        <mark>@Html.ValidationMessage("story")</mark>
+    </div>
+
+
+    <div class="col-lg-2 block">
+        Email:
+    </div>
+    <div class="col-lg-6">
+        @Html.TextBox("email", Model.Email, new { @class = "form-control" })
+    </div>
+    <div class="col-lg-4">
+        <mark>@Html.ValidationMessage("email")</mark>
+    </div>
+
+
+    <div class="col-lg-2 block"></div>
+    <div class="col-lg-6">
+        <input type="submit" value="Send Story" class="btn-lg btn-success" />
+    </div>
+    <div class="col-lg-4"></div>
+}
